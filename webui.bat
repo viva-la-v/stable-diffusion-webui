@@ -1,5 +1,6 @@
 @echo off
 
+for /f "delims=" %%x in ('type .env') do (set %%x)
 if not defined PYTHON (set PYTHON=python)
 if not defined VENV_DIR (set "VENV_DIR=%~dp0%venv")
 

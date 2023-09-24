@@ -16,8 +16,16 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # If run from macOS, load defaults from webui-macos-env.sh
 if [[ "$OSTYPE" == "darwin"* ]]; then
     if [[ -f "$SCRIPT_DIR"/webui-macos-env.sh ]]
-        then
+    then
         source "$SCRIPT_DIR"/webui-macos-env.sh
+    fi
+    if [[ -x "$(command -v python3.10)" ]]
+    then
+        python_cmd="python3.10"
+    fi
+    if [[ -f .env.default.macos ]]
+    then
+        source ./.env.default.macos
     fi
 fi
 
@@ -26,6 +34,10 @@ fi
 if [[ -f "$SCRIPT_DIR"/webui-user.sh ]]
 then
     source "$SCRIPT_DIR"/webui-user.sh
+fi
+if [[ -f .env ]]
+then
+    source ./.env
 fi
 
 # Set defaults
